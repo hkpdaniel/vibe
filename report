@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>IT26Vibe 프로젝트 보고서</title>
+    <style>
+        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 40px; background-color: #f8f9fa; }
+        .container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h1 { color: #2d3436; border-bottom: 3px solid #0984e3; padding-bottom: 10px; text-align: center; }
+        h2 { color: #0984e3; margin-top: 30px; border-left: 5px solid #0984e3; padding-left: 15px; }
+        .content-box { background: #f1f2f6; padding: 20px; border-radius: 10px; margin: 15px 0; }
+        .img-placeholder { background: #dfe6e9; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; border: 2px dashed #b2bec3; margin: 20px 0; border-radius: 10px; }
+        .img-placeholder img { max-width: 100%; max-height: 100%; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .tag { display: inline-block; background: #e1f5fe; color: #01579b; padding: 2px 8px; border-radius: 4px; font-size: 0.9em; font-weight: bold; margin-right: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 프로젝트 보고서: IT26Vibe Unit-Switcher</h1>
+
+    <h2>1. 기획 (어떤 문제를 왜 해결하려 했는가)</h2>
+    <div class="content-box">
+        기계공학 전공자로서 해외 기술 문서나 카탈로그 분석 시 <b>psi, lb, inch</b> 등 비표준 단위계를 SI 단위계로 변환해야 하는 번거로움을 해결하고자 했습니다. 
+        웹 브라우저를 켜거나 계산기를 두드리는 과정에서 발생하는 작업 흐름의 단절과 수동 입력으로 인한 <b>휴먼 에러(Human Error)</b>를 원천 차단하는 것을 목표로 삼았습니다.
+    </div>
+
+    <h2>2. 구성물 (주요 기능 목록)</h2>
+    <ul>
+        <li><b>Smart Clipboard Monitor:</b> 백그라운드에서 클립보드를 실시간 감시(0.5s 주기).</li>
+        <li><b>Auto-Unit Recognition:</b> 정규표현식을 활용한 수치 및 단위(psi, lb, inch, kgf 등) 자동 식별.</li>
+        <li><b>Seamless Overwrite:</b> 변환된 값을 즉시 클립보드에 덮어씌워 별도 조작 없이 바로 붙여넣기 가능.</li>
+        <li><b>Native Feedback:</b> Windows 표준 메시지 박스 및 시스템 사운드를 활용한 즉각적인 사용자 알림.</li>
+    </ul>
+
+    <h2>3. 실현 방법 (사용 기술, AI 도구 활용 과정)</h2>
+    <div class="content-box">
+        <span class="tag">Python 3.12</span> <span class="tag">Tkinter</span> <span class="tag">Regex</span> <span class="tag">Windows API</span><br><br>
+        로컬 개발 환경의 경로(Path) 문제와 라이브러리 의존성 충돌이라는 기술적 난관이 있었으나, <b>Gemini AI와의 협업</b>을 통해 외부 설치가 필요 없는 표준 라이브러리 기반의 'Zero-Dependency' 코드를 설계했습니다. 
+        C++ Native 방식과 Python Tkinter 방식 중 이식성이 더 뛰어난 파이썬 기반의 GUI 솔루션을 최종 채택하였습니다.
+    </div>
+
+    <h2>4. 결과 (완성된 프로그램 스크린샷 및 설명)</h2>
+    <div class="content-box">
+        프로그램 실행 시 상주형 GUI 창이 활성화되며 모든 텍스트 복사 동작에 반응합니다. 
+        사용자가 <code>100psi</code>를 복사하면 팝업 알림과 함께 클립보드 데이터가 <code>689476.0 Pa</code>로 자동 교체됩니다.
+    </div>
+    <div class="img-placeholder">
+        <p>프로그램 실행 스크린샷 삽입 위치 (Base64 이미지)</p>
+        </div>
+
+    <h2>5. 특장점 (이 프로그램만의 강점)</h2>
+    <ul>
+        <li><b>워크플로우 보존:</b> 별도의 프로그램 창 이동이나 단축키 입력 없이 '복사-붙여넣기'라는 기본 동작만으로 작동.</li>
+        <li><b>무설치 환경 지향:</b> 외부 패키지 설치 없이 파이썬 표준 환경에서 즉시 구동되는 높은 이식성.</li>
+        <li><b>엔지니어 특화:</b> 기계공학 설계에 필수적인 단위 계수를 정확하게 내장하여 신뢰성 확보.</li>
+    </ul>
+
+    <h2>6. 한계점 (현재 버전의 한계)</h2>
+    <div class="content-box">
+        현재 버전은 텍스트 내 수치와 단위가 결합된 단순 패턴 위주로 인식합니다. 
+        복잡한 수식 내에서의 단위 추출이나, 문맥상 일반 명사(예: 'in' 전치사)와의 혼동 가능성이 여전히 존재합니다.
+    </div>
+
+    <h2>7. Todo (향후 개선 방향)</h2>
+    <ul>
+        <li><b>전문화 모듈:</b> 유체역학, 열역학 등 세부 분과별 복합 단위(N·m, J/kg·K) 지원.</li>
+        <li><b>사용자 정의 모드:</b> 사용자가 원하는 소수점 자리수 및 타겟 단위를 설정할 수 있는 Configuration 패널 추가.</li>
+        <li><b>NLP 고도화:</b> 자연어 처리 모델을 활용하여 일반 텍스트와 공학 수치를 완벽히 구분하는 지능형 필터링 도입.</li>
+    </ul>
+</div>
+
+</body>
+</html>
